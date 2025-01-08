@@ -3,35 +3,35 @@
 #include <string.h>
 #include <ctype.h>
 
-// Token types
+
 typedef enum {
     KEYWORD, IDENTIFIER, CONSTANT, STRING, PUNCTUATION, OPERATOR, INVALID
 } TokenType;
 
-// Structure for a token
+
 typedef struct {
     char value[100];
     TokenType type;
 } Token;
 
-// Keywords in C
+
 const char *keywords[] = {
     "int", "char", "void", "return", "struct", "long", "float", "if", "else", "for", "while", "break", "continue"
 };
 const int keyword_count = sizeof(keywords) / sizeof(keywords[0]);
 
-// Punctuations in C
+
 const char punctuations[] = {'{', '}', '(', ')', ',', ';', ':'};
 
-// Operators in C
+
 const char *operators[] = {"+", "-", "=", "*", "/", "%", "++", "--", "&&", "||", "!"};
 const int operator_count = sizeof(operators) / sizeof(operators[0]);
 
-// Symbol table
+
 char symbol_table[100][100];
 int symbol_count = 0;
 
-// Functions to check token type
+
 int is_keyword(const char *word) {
     for (int i = 0; i < keyword_count; i++) {
         if (strcmp(word, keywords[i]) == 0) return 1;
@@ -53,7 +53,7 @@ int is_operator(const char *word) {
     return 0;
 }
 
-// Function to add an identifier to the symbol table
+
 void add_to_symbol_table(const char *identifier) {
     for (int i = 0; i < symbol_count; i++) {
         if (strcmp(symbol_table[i], identifier) == 0) return;
@@ -61,7 +61,7 @@ void add_to_symbol_table(const char *identifier) {
     strcpy(symbol_table[symbol_count++], identifier);
 }
 
-// Function to tokenize the input
+
 void tokenize(char *line) {
     char *token = strtok(line, " \t\n");
     while (token != NULL) {
@@ -96,7 +96,7 @@ void tokenize(char *line) {
     }
 }
 
-// Main function
+
 int main() {
     FILE *file = fopen("input.c", "r");
     if (!file) {
