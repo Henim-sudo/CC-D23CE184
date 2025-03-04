@@ -4,7 +4,7 @@
 
 %%
 [0-9]+          { printf("%s\n", yytext); }
-[ \t\n]         ; /* Ignore whitespace */
+[ \t\n]         ;  
 .              ; /* Ignore other characters */
 %%
 
